@@ -29,7 +29,19 @@
     var next = root.getAttribute('data-lang') === 'fr' ? 'en' : 'fr';
     try { localStorage.setItem('lang', next); } catch (err) {}
     applyLang(next);
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
   });
+
+  /* Reveal sections and rows once, as they scroll into view */
+  var revealables = document.querySelectorAll('.block .wrap > *, .project-row, .timeline li, .case-body section');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealables.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+  }
 
   var yr = document.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
@@ -40,7 +52,7 @@
   var ctx = canvas.getContext('2d');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var colors = ['#2EC4B6', '#FF7F6E', '#9FE7DF', '#5B7A8E'];
-  var W, H, dpr, points = [], centers = [], t0 = null;
+  var W, H, dpr, points = [], centers = [], t0 = null, mouse = { x: -9999, y: -9999 };
 
   function rand(a, b) { return a + Math.random() * (b - a); }
 
@@ -91,6 +103,15 @@
       var wob = reduce ? 0 : Math.sin(elapsed * 0.8 + pt.phase) * 2.2 * p;
       var x = pt.sx + (pt.tx - pt.sx) * p + wob;
       var y = pt.sy + (pt.ty - pt.sy) * p + Math.cos(elapsed * 0.7 + pt.phase) * (reduce ? 0 : 1.6 * p);
+      var dx = x - mouse.x, dy = y - mouse.y, d2 = dx * dx + dy * dy;
+      if (!reduce && d2 < 9000) {
+        var push = (1 - d2 / 9000) * 26, d = Math.sqrt(d2) || 1;
+        pt.ox = (pt.ox || 0) + (dx / d * push - (pt.ox || 0)) * 0.2;
+        pt.oy = (pt.oy || 0) + (dy / d * push - (pt.oy || 0)) * 0.2;
+      } else {
+        pt.ox = (pt.ox || 0) * 0.9; pt.oy = (pt.oy || 0) * 0.9;
+      }
+      x += pt.ox; y += pt.oy;
       ctx.beginPath();
       ctx.arc(x, y, pt.size, 0, Math.PI * 2);
       ctx.fillStyle = p < 0.35 ? '#5B7A8E' : colors[pt.k];
@@ -103,6 +124,12 @@
 
   setup();
   requestAnimationFrame(draw);
+  var hero = canvas.parentElement;
+  hero.addEventListener('pointermove', function (e) {
+    var r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  hero.addEventListener('pointerleave', function () { mouse.x = -9999; mouse.y = -9999; });
   var resizeTimer;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
