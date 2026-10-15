@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr" data-lang="fr" data-title-fr="RemaxImmo · Isabelle D. Easton" data-title-en="RemaxImmo · Isabelle D. Easton">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RemaxImmo · Isabelle D. Easton</title>
+<meta name="description" content="Une application de gestion immobilière où chaque agent ne voit que ses propres clients et leurs maisons.">
+<meta property="og:title" content="RemaxImmo · Isabelle D. Easton">
+<meta property="og:description" content="Une application de gestion immobilière où chaque agent ne voit que ses propres clients et leurs maisons.">
+<meta name="theme-color" content="#0F1B26">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
+<nav class="site-nav" aria-label="Navigation">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Isabelle D. Easton</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+      <li><a href="../index.html#parcours"><span lang="fr">Parcours</span><span lang="en">Background</span></a></li>
+      <li><a href="../index.html#competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" type="button">EN</button>
+  </div>
+</nav>
+<main id="main">
+
+<header class="case-head">
+  <div class="wrap">
+    <a class="back" href="../index.html#projets"><span lang="fr">Tous les projets</span><span lang="en">All projects</span></a>
+    <h1><span lang="fr">RemaxImmo</span><span lang="en">RemaxImmo</span></h1>
+    <p lang="fr" class="lede">Une application de gestion immobilière où chaque agent ne voit que ses propres clients et leurs maisons.</p><p lang="en" class="lede">A real estate management app where each agent only sees their own clients and their houses.</p>
+    <dl class="facts"><div><dt><span lang="fr">Type</span><span lang="en">Type</span></dt><dd><span lang="fr">Projet de cours</span><span lang="en">Course project</span></dd></div><div><dt><span lang="fr">Cours</span><span lang="en">Course</span></dt><dd><span lang="fr">Applications multi-tiers</span><span lang="en">Multi-tier applications</span></dd></div><div><dt><span lang="fr">Réalisé</span><span lang="en">Built</span></dt><dd><span lang="fr">Seule</span><span lang="en">Solo</span></dd></div></dl>
+    <ul class="tags"><li>C#</li><li>Windows Forms</li><li>ADO.NET</li><li>SQL Server</li></ul>
+    <div class="actions"><a class="btn" href="https://github.com/IsadoraEaston/remax-winforms-app" target="_blank" rel="noopener"><span lang="fr">Voir le code sur GitHub</span><span lang="en">View the code on GitHub</span></a></div>
+    <figure class="case-shot">
+      <div class="shot"><img src="../img/remax.jpg" alt="Gestion des employés et des maisons : l'agent sélectionné affiche ses propres clients."></div>
+      <figcaption><span lang="fr">Gestion des employés et des maisons : l'agent sélectionné affiche ses propres clients.</span><span lang="en">Employee and house management: the selected agent shows their own clients.</span></figcaption>
+    </figure>
+  </div>
+</header>
+<div class="case-body"><div class="wrap"><section><h2><span lang="fr">Le problème</span><span lang="en">The problem</span></h2><div class="content"><div lang="fr"><p>Une agence immobilière doit gérer ses employés, ses clients (acheteurs et vendeurs) et ses propriétés. Mais tout le monde ne doit pas tout voir : un agent ne gère que son propre portefeuille, l'administrateur gère l'ensemble, et un visiteur peut seulement consulter.</p></div><div lang="en"><p>A real estate agency needs to manage its employees, its clients (buyers and sellers) and its properties. But not everyone should see everything: an agent manages only their own portfolio, the admin manages everything, and a visitor can only browse.</p></div></div></section><section><h2><span lang="fr">Choix techniques</span><span lang="en">Technical choices</span></h2><div class="content"><div lang="fr"><ul><li><strong>Architecture à trois couches</strong> : interface WinForms, couche métier orientée objet, couche de données ADO.NET avec SQL Server.</li><li><strong>Interface MDI</strong> pour ouvrir plusieurs fenêtres de gestion à la fois (employés, clients, maisons, recherche).</li><li><strong>Trois rôles</strong> : Admin (accès complet), Agent (accès restreint, protégé par mot de passe), Visiteur (lecture seule).</li></ul></div><div lang="en"><ul><li><strong>Three-tier architecture</strong>: WinForms interface, object-oriented business layer, ADO.NET data layer with SQL Server.</li><li><strong>MDI interface</strong> to open several management windows at once (employees, clients, houses, search).</li><li><strong>Three roles</strong>: Admin (full access), Agent (restricted, password protected), Visitor (read-only).</li></ul></div></div></section><section><h2><span lang="fr">Défis et solutions</span><span lang="en">Challenges and solutions</span></h2><div class="content"><div lang="fr"><p>Le défi principal a été de <strong>délimiter les accès</strong>. Il fallait qu'un agent connecté ne voie que ses clients et les maisons de ces clients, sans jamais accéder aux données des autres. J'ai eu des problèmes de connexion avant de faire fonctionner ce filtrage correctement, avec les données liées entre employés, clients et maisons.</p></div><div lang="en"><p>The main challenge was <strong>scoping access</strong>. A logged-in agent had to see only their clients and those clients' houses, never anyone else's data. I ran into connection issues before getting this filtering to work correctly across the linked employee, client and house data.</p></div></div></section><section><h2><span lang="fr">Résultats</span><span lang="en">Results</span></h2><div class="content"><div lang="fr"><p>Une application fonctionnelle avec recherche de propriétés (par référence, prix et ville), un répertoire d'agents avec leurs inscriptions, et la gestion des clients acheteurs et vendeurs.</p></div><div lang="en"><p>A working application with property search (by reference, price and city), an agent directory with their listings, and buyer and seller client management.</p></div></div></section><section><h2><span lang="fr">Ce que j'ai appris</span><span lang="en">What I learned</span></h2><div class="content"><div lang="fr"><p>La sécurité commence dans la conception : décider qui voit quoi influence les requêtes, les écrans et les relations entre les tables. J'ai aussi compris l'intérêt de séparer l'interface, la logique et l'accès aux données pour pouvoir déboguer chaque couche.</p></div><div lang="en"><p>Security starts in the design: deciding who sees what shapes the queries, the screens and the relationships between tables. I also understood why separating the interface, the logic and the data access makes each layer easier to debug.</p></div></div></section></div></div>
+<div class="wrap">
+  <nav class="next" aria-label="Projets / Projects">
+    <a href="../index.html#projets"><small><span lang="fr">Retour</span><span lang="en">Back</span></small><span><span lang="fr">Tous les projets</span><span lang="en">All projects</span></span></a>
+    <a href="bst.html" style="text-align:right"><small><span lang="fr">Projet suivant</span><span lang="en">Next project</span></small><span><span lang="fr">Annuaire BST</span><span lang="en">BST Phone Book</span></span></a>
+  </nav>
+</div>
+</main>
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Isabelle D. Easton · <span lang="fr">Montréal, Québec</span><span lang="en">Montréal, Québec</span></div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr" data-lang="fr" data-title-fr="Convertisseur de devises · Isabelle D. Easton" data-title-en="Currency Converter · Isabelle D. Easton">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convertisseur de devises · Isabelle D. Easton</title>
+<meta name="description" content="Mon bureau de change en C# de 2e session, réécrit pour le web avec des taux en temps réel.">
+<meta property="og:title" content="Convertisseur de devises · Isabelle D. Easton">
+<meta property="og:description" content="Mon bureau de change en C# de 2e session, réécrit pour le web avec des taux en temps réel.">
+<meta name="theme-color" content="#0F1B26">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
+<nav class="site-nav" aria-label="Navigation">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Isabelle D. Easton</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+      <li><a href="../index.html#parcours"><span lang="fr">Parcours</span><span lang="en">Background</span></a></li>
+      <li><a href="../index.html#competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" type="button">EN</button>
+  </div>
+</nav>
+<main id="main">
+
+<header class="case-head">
+  <div class="wrap">
+    <a class="back" href="../index.html#projets"><span lang="fr">Tous les projets</span><span lang="en">All projects</span></a>
+    <h1><span lang="fr">Convertisseur de devises</span><span lang="en">Currency Converter</span></h1>
+    <p lang="fr" class="lede">Mon bureau de change en C# de 2e session, réécrit pour le web avec des taux en temps réel.</p><p lang="en" class="lede">My 2nd-term C# currency exchange app, rewritten for the web with live rates.</p>
+    <dl class="facts"><div><dt><span lang="fr">Type</span><span lang="en">Type</span></dt><dd><span lang="fr">Projet personnel</span><span lang="en">Personal project</span></dd></div><div><dt><span lang="fr">Devises</span><span lang="en">Currencies</span></dt><dd><span lang="fr">Plus de 40</span><span lang="en">40+</span></dd></div><div><dt><span lang="fr">Déployé sur</span><span lang="en">Deployed on</span></dt><dd><span lang="fr">Vercel</span><span lang="en">Vercel</span></dd></div></dl>
+    <ul class="tags"><li>JavaScript</li><li>API REST</li><li>HTML</li><li>CSS</li><li>Vercel</li></ul>
+    <div class="actions"><a class="btn btn-primary" href="https://currency-converter-three-sigma-84.vercel.app" target="_blank" rel="noopener"><span lang="fr">Voir la démo</span><span lang="en">Open the demo</span></a><a class="btn" href="https://github.com/IsadoraEaston/currency-converter" target="_blank" rel="noopener"><span lang="fr">Voir le code sur GitHub</span><span lang="en">View the code on GitHub</span></a></div>
+    <figure class="case-shot">
+      <div class="shot dark"><img src="../img/converter.jpg" alt="Conversion en direct du dollar canadien vers la roupie mauricienne."></div>
+      <figcaption><span lang="fr">Conversion en direct du dollar canadien vers la roupie mauricienne.</span><span lang="en">Live conversion from Canadian dollars to Mauritian rupees.</span></figcaption>
+    </figure>
+  </div>
+</header>
+<div class="case-body"><div class="wrap"><section><h2><span lang="fr">Le problème</span><span lang="en">The problem</span></h2><div class="content"><div lang="fr"><p>Mon bureau de change en C# fonctionnait sur un seul ordinateur, avec des taux fixes. Je voulais une version accessible à tous dans le navigateur, avec les vrais taux du jour, et qui inclue la roupie mauricienne.</p></div><div lang="en"><p>My C# currency exchange app ran on a single computer with fixed rates. I wanted a version anyone could use in the browser, with real daily rates, and including the Mauritian rupee.</p></div></div></section><section><h2><span lang="fr">Choix techniques</span><span lang="en">Technical choices</span></h2><div class="content"><div lang="fr"><ul><li><strong>JavaScript sans framework</strong>, pour maîtriser les bases : requêtes <em>fetch</em>, async/await et manipulation du DOM.</li><li><strong>API publique de taux de change</strong>, avec un calcul croisé qui passe par le dollar américain comme base.</li><li><strong>Déploiement sur Vercel</strong> et interface adaptée au téléphone.</li></ul></div><div lang="en"><ul><li><strong>JavaScript with no framework</strong>, to master the basics: <em>fetch</em> requests, async/await and DOM manipulation.</li><li><strong>A public exchange-rate API</strong>, with cross-rate math using the US dollar as the base.</li><li><strong>Deployed on Vercel</strong> with a mobile-friendly interface.</li></ul></div></div></section><section><h2><span lang="fr">Défis et solutions</span><span lang="en">Challenges and solutions</span></h2><div class="content"><div lang="fr"><p>Gérer les erreurs proprement quand l'API ne répond pas, et comprendre pourquoi une clé d'API ne doit jamais se trouver dans le code exécuté par le navigateur. Une fonction serveur (serverless) sur Vercel est la solution prévue si l'API exige une clé.</p></div><div lang="en"><p>Handling errors cleanly when the API doesn't respond, and understanding why an API key must never live in code that runs in the browser. A serverless function on Vercel is the planned fix if the API requires a key.</p></div></div></section><section><h2><span lang="fr">Résultats</span><span lang="en">Results</span></h2><div class="content"><div lang="fr"><p>Une application en ligne, utilisable sur ordinateur et téléphone, avec inversion des devises en un clic et conversion avec la touche Entrée.</p></div><div lang="en"><p>A live app that works on desktop and mobile, with one-click currency swap and Enter-to-convert.</p></div></div></section><section><h2><span lang="fr">Ce que j'ai appris</span><span lang="en">What I learned</span></h2><div class="content"><div lang="fr"><p>Refaire un projet existant dans une autre technologie est un excellent exercice : la logique était connue, je pouvais me concentrer sur le web, les API et le déploiement.</p></div><div lang="en"><p>Rebuilding an existing project in another technology is a great exercise: the logic was known, so I could focus on the web, APIs and deployment.</p></div></div></section></div></div>
+<div class="wrap">
+  <nav class="next" aria-label="Projets / Projects">
+    <a href="../index.html#projets"><small><span lang="fr">Retour</span><span lang="en">Back</span></small><span><span lang="fr">Tous les projets</span><span lang="en">All projects</span></span></a>
+    <a href="segmentation.html" style="text-align:right"><small><span lang="fr">Projet suivant</span><span lang="en">Next project</span></small><span><span lang="fr">Segmentation de clientèle</span><span lang="en">Customer Segmentation</span></span></a>
+  </nav>
+</div>
+</main>
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Isabelle D. Easton · <span lang="fr">Montréal, Québec</span><span lang="en">Montréal, Québec</span></div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>

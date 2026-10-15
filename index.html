@@ -1,740 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fr" data-lang="fr" data-title-fr="Isabelle D. Easton · Développeuse logiciel" data-title-en="Isabelle D. Easton · Software developer">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Isabelle D. Easton — Web Developer & ML</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --bg: #F7F5F2;
-    --surface: #EFECE8;
-    --text: #1A1814;
-    --text-muted: #7A7570;
-    --accent: #C8502A;
-    --accent-light: #F0E8E4;
-    --border: #DDD9D4;
-    --white: #FFFFFF;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 4rem;
-    background: rgba(247, 245, 242, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.25rem;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #F0E8E4 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    max-width: 700px;
-    animation: fadeUp 0.8s ease both;
-  }
-
-  .hero-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 2rem;
-    padding: 0.3rem 1rem;
-    margin-bottom: 2rem;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-
-  .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-desc {
-    font-size: 1.125rem;
-    color: var(--text-muted);
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--text);
-    color: var(--white);
-    padding: 0.875rem 2rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-
-  .btn-secondary {
-    display: inline-block;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 0.875rem 2rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: border-color 0.2s, transform 0.15s;
-  }
-
-  .btn-secondary:hover { border-color: var(--text); transform: translateY(-1px); }
-
-  .avatar {
-    position: absolute;
-    right: 4rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .avatar-initials {
-    font-family: 'DM Serif Display', serif;
-    font-size: 5rem;
-    color: var(--accent);
-    letter-spacing: -0.05em;
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 6rem 4rem;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 3rem;
-  }
-
-  /* ABOUT */
-  .about {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    max-width: 1100px;
-  }
-
-  .about-text p {
-    color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-    font-size: 1.0625rem;
-  }
-
-  .about-text p strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .about-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .detail-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .detail-item:last-child { border-bottom: none; }
-
-  .detail-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .detail-value {
-    font-size: 1rem;
-    color: var(--text);
-    font-weight: 400;
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-    max-width: 900px;
-  }
-
-  .skill-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 1.25rem 1rem;
-    text-align: center;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .skill-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  .skill-icon {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  .skill-name {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text);
-  }
-
-  /* PROJECTS */
-  .projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    max-width: 1100px;
-  }
-
-  .project-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  }
-
-  .project-preview {
-    height: 180px;
-    background: var(--accent-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .project-preview.shot {
-    background: #f4f6f6;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .project-preview.shot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-  }
-
-  .project-preview.shot.dark { background: #0d0d10; }
-  .project-preview.shot.dark img { object-fit: contain; }
-
-  .project-card.featured { grid-column: 1 / -1; }
-  .project-card.featured .project-preview { height: 300px; }
-  .project-card.featured .project-preview img { object-fit: contain; background: #fff; }
-
-  .kpi-row { display: flex; gap: 2rem; flex-wrap: wrap; margin: 0 0 1.25rem; }
-  .kpi-row b { display: block; font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--accent); line-height: 1.1; }
-  .kpi-row span { font-size: 0.8rem; color: var(--text-muted); }
-
-  .project-body {
-    padding: 1.5rem;
-  }
-
-  .project-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.75rem;
-  }
-
-  .tag {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--accent-light);
-    padding: 0.2rem 0.6rem;
-    border-radius: 1rem;
-  }
-
-  .project-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  .project-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-  }
-
-  .project-links {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .project-link {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    transition: color 0.2s;
-  }
-
-  .project-link:hover { color: var(--accent); }
-
-  /* CONTACT */
-  .contact-inner {
-    max-width: 600px;
-  }
-
-  .contact-inner p {
-    color: var(--text-muted);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .contact-email {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.75rem;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 0.2rem;
-    transition: color 0.2s;
-  }
-
-  .contact-email:hover { color: var(--accent); }
-
-  /* FOOTER */
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-
-  footer a {
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  footer a:hover { color: var(--accent); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.25rem; }
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 7rem 1.5rem 4rem; }
-    .avatar { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isabelle D. Easton · Développeuse logiciel</title>
+<meta name="description" content="Portfolio d'Isabelle D. Easton, développeuse logiciel en formation à Montréal. Stage recherché à l'été 2027.">
+<meta property="og:title" content="Isabelle D. Easton · Développeuse logiciel">
+<meta property="og:description" content="Portfolio d'Isabelle D. Easton, développeuse logiciel en formation à Montréal. Stage recherché à l'été 2027.">
+<meta name="theme-color" content="#0F1B26">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<nav>
-  <a href="#" class="nav-logo">IE</a>
-  <ul class="nav-links">
-    <li><a href="#about">About / À propos</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
+<nav class="site-nav" aria-label="Navigation">
+  <div class="wrap">
+    <a class="brand" href="index.html">Isabelle D. Easton</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+      <li><a href="index.html#parcours"><span lang="fr">Parcours</span><span lang="en">Background</span></a></li>
+      <li><a href="index.html#competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" type="button">EN</button>
+  </div>
 </nav>
+<main id="main">
 
-<section class="hero">
-  <div class="hero-content">
-    <span class="hero-tag">Available for opportunities · Disponible</span>
-    <h1>Isabelle<br><em>D. Easton</em></h1>
-    <p class="hero-desc">
-      Software developer in training (Collège LaSalle, Montréal), with a background in retail management. Seeking a <strong>summer 2027 internship</strong> (May–August) in software development or data / machine learning.
-      <br><br>
-      Développeuse logiciel en formation (Collège LaSalle, Montréal), issue de la gestion en commerce de détail. Je cherche un <strong>stage à l'été 2027</strong> (mai à août) en développement logiciel ou en données / apprentissage automatique.
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn-primary">View my work →</a>
-      <a href="#contact" class="btn-secondary">Get in touch</a>
-    </div>
-  </div>
-  <div class="avatar">
-    <span class="avatar-initials">IE</span>
-  </div>
-</section>
-
-<section class="about" id="about">
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <div class="section-label">About / À propos</div>
-      <h2 class="section-title">Building the web, one line at a time.</h2>
-      <p>I'm <strong>Isabelle D. Easton</strong>, a web development student based in Montréal, Canada. I'm currently deepening my skills in both frontend and backend development.</p>
-      <p>Je suis passionnée par la création d'interfaces web intuitives et par l'apprentissage constant de nouvelles technologies. Mon objectif est de devenir développeuse fullstack.</p>
-      <p>When I'm not coding, I'm exploring new tools, working on personal projects, and growing my skills every day.</p>
-    </div>
-    <div class="about-details reveal">
-      <div class="detail-item">
-        <span class="detail-label">Location</span>
-        <span class="detail-value">Montréal, Québec 🇨🇦</span>
-      </div>
-      <div class="detail-item">
-        <span class="detail-label">Status</span>
-        <span class="detail-value">Student · Web Development & Machine Learning</span>
-      </div>
-      <div class="detail-item">
-        <span class="detail-label">Focus</span>
-        <span class="detail-value">Frontend & Backend Development</span>
-      </div>
-      <div class="detail-item">
-        <span class="detail-label">GitHub</span>
-        <span class="detail-value"><a href="https://github.com/IsadoraEaston" style="color: var(--accent); text-decoration: none;">github.com/IsadoraEaston</a></span>
+<header class="hero">
+  <canvas id="clusters" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-text">
+      <h1>Isabelle D. Easton</h1>
+      <p lang="fr" class="lede">J'ai géré un commerce de mode pendant des années. Aujourd'hui, je développe des logiciels et j'utilise l'apprentissage automatique pour répondre aux questions que je me posais en boutique.</p><p lang="en" class="lede">I ran a fashion retail business for years. Today I build software and use machine learning to answer the questions I used to ask in the store.</p>
+      <p lang="fr" class="ask">Étudiante en programmation au Collège LaSalle, à Montréal. Je cherche un <strong>stage à l'été 2027</strong> (mai à août) en développement logiciel ou en données.</p><p lang="en" class="ask">Programming student at Collège LaSalle in Montréal. I'm looking for a <strong>summer 2027 internship</strong> (May to August) in software development or data.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="projects/segmentation.html"><span lang="fr">Voir mon projet vedette</span><span lang="en">See my featured project</span></a>
+        <a class="btn" href="cv/CV_IsabelleEaston_FR.pdf" lang="fr" download>Télécharger mon CV</a>
+        <a class="btn" href="cv/Resume_IsabelleEaston_EN.pdf" lang="en" download>Download my resume</a>
       </div>
     </div>
   </div>
-</section>
+  <div class="legend" aria-hidden="true">
+    <span><i style="background:#2EC4B6"></i>Champions</span>
+    <span><i style="background:#FF7F6E"></i><span lang="fr">À risque</span><span lang="en">At risk</span></span>
+    <span><i style="background:#9FE7DF"></i><span lang="fr">Prometteurs</span><span lang="en">Promising</span></span>
+    <span><i style="background:#5B7A8E"></i><span lang="fr">Perdus</span><span lang="en">Lost</span></span>
+  </div>
+</header>
 
-<section id="skills">
-  <div class="section-label reveal">Technologies</div>
-  <h2 class="section-title reveal">Skills & Tools</h2>
-  <div class="skills-grid">
-    <div class="skill-card reveal"><span class="skill-icon">🌐</span><span class="skill-name">HTML5</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">🎨</span><span class="skill-name">CSS3</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">⚡</span><span class="skill-name">JavaScript</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">💎</span><span class="skill-name">jQuery</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">🐘</span><span class="skill-name">PHP</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">🐍</span><span class="skill-name">Python</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">☕</span><span class="skill-name">Java</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">🔷</span><span class="skill-name">C#</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">🤖</span><span class="skill-name">Machine Learning</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">🐍</span><span class="skill-name">Python / NumPy</span></div>
-    <div class="skill-card reveal"><span class="skill-icon">📊</span><span class="skill-name">scikit-learn</span></div>
+<section class="block" id="projets">
+  <div class="wrap">
+    <h2><span lang="fr">Projets</span><span lang="en">Projects</span></h2>
+    <p lang="fr" class="intro">Chaque projet a sa page : le problème, mes choix techniques, les résultats et ce que j'en ai appris.</p><p lang="en" class="intro">Each project has its own page: the problem, my technical choices, the results and what I learned.</p>
+    <div class="featured">
+      <a class="shot" href="projects/segmentation.html"><img src="img/segmentation.jpg" alt="Customer segmentation demo / Démo de la segmentation de clientèle"></a>
+      <div>
+        <h3><span lang="fr">Segmentation de clientèle</span><span lang="en">Customer Segmentation</span></h3>
+        <p lang="fr">Analyse RFM et K-means sur les ventes réelles d'un détaillant en ligne, interprétées avec mon expérience du commerce de détail.</p><p lang="en">RFM analysis and K-means on a real online retailer's sales, interpreted through my retail experience.</p>
+        <div class="stat"><b>20 % → 74 %</b><span lang="fr"><span>Les Champions, 20 % des 5 839 clients, génèrent 74 % des revenus.</span></span><span lang="en"><span>Champions, 20% of 5,839 customers, generate 74% of revenue.</span></span></div>
+        <ul class="tags"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>K-means</li><li>Streamlit</li></ul>
+        <div class="actions">
+          <a class="btn btn-primary" href="projects/segmentation.html"><span lang="fr">Lire l'étude de cas</span><span lang="en">Read the case study</span></a>
+          <a class="btn" href="https://isadora-customer-segmentation.streamlit.app" target="_blank" rel="noopener"><span lang="fr">Voir la démo</span><span lang="en">Open the demo</span></a>
+        </div>
+      </div>
+    </div>
+    <ul class="project-list" style="margin-top:3.5rem"><li class="project-row"><a href="projects/remax.html">
+      <div class="thumb"><img src="img/remax.jpg" alt="" loading="lazy"></div>
+      <div><h3><span lang="fr">RemaxImmo</span><span lang="en">RemaxImmo</span></h3><p lang="fr">Une application de gestion immobilière où chaque agent ne voit que ses propres clients et leurs maisons.</p><p lang="en">A real estate management app where each agent only sees their own clients and their houses.</p><ul class="tags"><li>C#</li><li>Windows Forms</li><li>ADO.NET</li><li>SQL Server</li></ul></div>
+      <span class="go"><span lang="fr">Étude de cas</span><span lang="en">Case study</span></span></a></li><li class="project-row"><a href="projects/bst.html">
+      <div class="thumb dark"><img src="img/bst.jpg" alt="" loading="lazy"></div>
+      <div><h3><span lang="fr">Annuaire BST</span><span lang="en">BST Phone Book</span><span class="badge">99/100</span></h3><p lang="fr">Un annuaire téléphonique bâti sur un arbre binaire de recherche, comparé à une structure hybride.</p><p lang="en">A phone book built on a binary search tree, benchmarked against a hybrid structure.</p><ul class="tags"><li>C#</li><li>.NET 8</li><li>Structures de données</li><li>Algorithmes</li></ul></div>
+      <span class="go"><span lang="fr">Étude de cas</span><span lang="en">Case study</span></span></a></li><li class="project-row"><a href="projects/bank.html">
+      <div class="thumb"><img src="img/bank.jpg" alt="" loading="lazy"></div>
+      <div><h3><span lang="fr">Système bancaire</span><span lang="en">Bank System</span></h3><p lang="fr">Un système bancaire complet, construit deux fois : avec des fichiers, puis avec une base Oracle.</p><p lang="en">A complete banking system, built twice: with files, then with an Oracle database.</p><ul class="tags"><li>Java 17</li><li>Swing</li><li>Oracle</li><li>JDBC</li></ul></div>
+      <span class="go"><span lang="fr">Étude de cas</span><span lang="en">Case study</span></span></a></li><li class="project-row"><a href="projects/converter.html">
+      <div class="thumb dark"><img src="img/converter.jpg" alt="" loading="lazy"></div>
+      <div><h3><span lang="fr">Convertisseur de devises</span><span lang="en">Currency Converter</span></h3><p lang="fr">Mon bureau de change en C# de 2e session, réécrit pour le web avec des taux en temps réel.</p><p lang="en">My 2nd-term C# currency exchange app, rewritten for the web with live rates.</p><ul class="tags"><li>JavaScript</li><li>API REST</li><li>HTML</li><li>CSS</li></ul></div>
+      <span class="go"><span lang="fr">Étude de cas</span><span lang="en">Case study</span></span></a></li></ul>
+    <p lang="fr" class="also">Aussi : la <a href='https://coursera.org/verify/specialization/VX1HIUTYGSIW' target='_blank' rel='noopener'>spécialisation Machine Learning d'Andrew Ng</a> (certificat, <a href='https://github.com/IsadoraEaston/Machine_Learning_Specialization' target='_blank' rel='noopener'>travaux pratiques</a>) et <a href='https://github.com/IsadoraEaston/Musical-Drums' target='_blank' rel='noopener'>Musical Drums</a>, un jeu de mémoire en JavaScript.</p><p lang="en" class="also">Also: <a href='https://coursera.org/verify/specialization/VX1HIUTYGSIW' target='_blank' rel='noopener'>Andrew Ng's Machine Learning Specialization</a> (certificate, <a href='https://github.com/IsadoraEaston/Machine_Learning_Specialization' target='_blank' rel='noopener'>labs</a>) and <a href='https://github.com/IsadoraEaston/Musical-Drums' target='_blank' rel='noopener'>Musical Drums</a>, a JavaScript memory game.</p>
   </div>
 </section>
 
-<section class="projects" id="projects">
-  <div class="section-label reveal">Work / Projets</div>
-  <h2 class="section-title reveal">Featured Projects</h2>
-  <div class="projects-grid">
-
-    <div class="project-card featured reveal">
-      <div class="project-preview shot"><img src="img/segmentation.jpg" alt="Customer Segmentation Streamlit app showing four customer segments"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">pandas</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">K-means</span>
-          <span class="tag">Streamlit</span>
-        </div>
-        <h3 class="project-title">Customer Segmentation · Segmentation de clientèle</h3>
-        <p class="project-desc">Who are a retailer's best customers, and who is it about to lose? RFM analysis and K-means clustering on real data from a UK online retailer, including a data quality fix (cancellations matched to their original orders). The four segments are interpreted through my retail management experience, and the app is deployed online.</p>
-        <div class="kpi-row">
-          <div><b>5,839</b><span>customers segmented</span></div>
-          <div><b>4</b><span>segments interpreted</span></div>
-          <div><b>20% → 74%</b><span>Champions: 20% of customers, 74% of revenue</span></div>
-        </div>
-        <div class="project-links">
-          <a href="https://isadora-customer-segmentation.streamlit.app" class="project-link" target="_blank">🌐 Live Demo</a>
-          <a href="https://github.com/IsadoraEaston/customer-segmentation" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-preview shot"><img src="img/remax.jpg" alt="RemaxImmo employee and house management windows"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">C#</span>
-          <span class="tag">WinForms</span>
-          <span class="tag">SQL Server</span>
-          <span class="tag">ADO.NET</span>
-        </div>
-        <h3 class="project-title">RemaxImmo</h3>
-        <p class="project-desc">A multi-tier desktop application for real estate management with role-based access control: each agent can only see their own clients and their houses, while the admin manages everything.</p>
-        <div class="project-links">
-          <a href="https://github.com/IsadoraEaston/remax-winforms-app" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-preview shot dark"><img src="img/bst.jpg" alt="Graphical display of the binary search tree"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">C#</span>
-          <span class="tag">.NET 8</span>
-          <span class="tag">Algorithms</span>
-          <span class="tag">Data Structures</span>
-        </div>
-        <h3 class="project-title">Annuaire BST · 99/100</h3>
-        <p class="project-desc">A phone book app using a Binary Search Tree, benchmarked against a hybrid V2 (BST + Hash Table + List), with 4 traversals and a graphical tree display (Reingold-Tilford). Delivered with an extension beyond the requirements.</p>
-        <div class="project-links">
-          <a href="https://github.com/IsadoraEaston/annuaire-bst" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-preview shot"><img src="img/bank.jpg" alt="Bank Manager screen of the Bank System application"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">Java</span>
-          <span class="tag">Swing</span>
-          <span class="tag">Oracle</span>
-          <span class="tag">PL/SQL</span>
-        </div>
-        <h3 class="project-title">Bank System</h3>
-        <p class="project-desc">Client and account management (checking, savings, credit, currency accounts) with transaction reports and a normalized Oracle database using type-specific account sub-tables.</p>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-preview shot dark"><img src="img/converter.jpg" alt="Currency converter converting CAD to MUR"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">REST API</span>
-        </div>
-        <h3 class="project-title">Currency Converter</h3>
-        <p class="project-desc">Real-time currency converter with 40+ currencies (including the Mauritian rupee) using live exchange rates. Built with vanilla JS, no frameworks.</p>
-        <div class="project-links">
-          <a href="https://currency-converter-three-sigma-84.vercel.app" class="project-link" target="_blank">🌐 Live Demo</a>
-          <a href="https://github.com/IsadoraEaston/currency-converter" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-preview">🤖</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">TensorFlow</span>
-          <span class="tag">Machine Learning</span>
-        </div>
-        <h3 class="project-title">ML Specialization</h3>
-        <p class="project-desc">Completed all 3 courses of the Machine Learning Specialization by Andrew Ng (DeepLearning.AI / Stanford). Implemented linear/logistic regression, neural networks, decision trees, recommender systems, and deep Q-learning from scratch using NumPy and TensorFlow.</p>
-        <div class="project-links">
-          <a href="https://github.com/IsadoraEaston/Machine_Learning_Specialization" class="project-link" target="_blank">↗ GitHub</a>
-          <a href="https://coursera.org/verify/specialization/VX1HIUTYGSIW" class="project-link" target="_blank">🏆 Specialization Certificate</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-preview">🥁</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">jQuery</span>
-        </div>
-        <h3 class="project-title">Musical Drums</h3>
-        <p class="project-desc">A Simon-style memory game where players repeat growing sequences of colored buttons and sounds. Built with vanilla JS and jQuery.</p>
-        <div class="project-links">
-          <a href="https://github.com/IsadoraEaston/Musical-Drums" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
-      </div>
-    </div>
-
+<section class="block" id="parcours">
+  <div class="wrap">
+    <h2><span lang="fr">Parcours</span><span lang="en">Background</span></h2>
+    <p lang="fr" class="intro">Mon expérience en commerce me sert tous les jours en programmation : comprendre le besoin réel avant de coder.</p><p lang="en" class="intro">My retail experience helps me every day in programming: understanding the real need before writing code.</p>
+    <ol class="timeline">
+      <li><div class="when">2008 – 2023</div><h3><span lang="fr">Gestion en commerce de détail, Maurice</span><span lang="en">Retail management, Mauritius</span></h3>
+        <p lang="fr">Direction d'équipes de 8 à 12 personnes et croissance des ventes d'année en année. Collaboration au développement d'une boutique en ligne WooCommerce, mon premier contact avec le code.</p><p lang="en">Led teams of 8 to 12 people and grew sales year over year. Collaborated on building a WooCommerce online store, my first contact with code.</p></li>
+      <li><div class="when">2023</div><h3><span lang="fr">Premiers pas en développement web</span><span lang="en">First steps in web development</span></h3>
+        <p lang="fr">Certification Responsive Web Design de freeCodeCamp (environ 300 heures).</p><p lang="en">freeCodeCamp Responsive Web Design certification (about 300 hours).</p></li>
+      <li><div class="when"><span lang="fr">2024 – aujourd'hui</span><span lang="en">2024 – today</span></div><h3><span lang="fr">DEC en programmation, Collège LaSalle</span><span lang="en">Programming diploma (DEC), Collège LaSalle</span></h3>
+        <p lang="fr">C#, Java, Python, PHP, bases de données Oracle et SQL Server, structures de données et développement mobile (Swift, Kotlin).</p><p lang="en">C#, Java, Python, PHP, Oracle and SQL Server databases, data structures and mobile development (Swift, Kotlin).</p></li>
+      <li><div class="when">2026</div><h3><span lang="fr">Spécialisation Machine Learning</span><span lang="en">Machine Learning Specialization</span></h3>
+        <p lang="fr">Les trois cours d'Andrew Ng (DeepLearning.AI et Stanford), puis mon premier projet IA personnel.</p><p lang="en">Andrew Ng's three courses (DeepLearning.AI and Stanford), followed by my first personal AI project.</p></li>
+      <li class="now"><div class="when"><span lang="fr">Été 2027</span><span lang="en">Summer 2027</span></div><h3><span lang="fr">Mon prochain pas : un stage</span><span lang="en">My next step: an internship</span></h3>
+        <p lang="fr">Disponible de mai à août 2027, en français ou en anglais.</p><p lang="en">Available from May to August 2027, in French or English.</p></li>
+    </ol>
   </div>
 </section>
 
-<section id="contact">
-  <div class="contact-inner">
-    <div class="section-label reveal">Contact</div>
-    <h2 class="section-title reveal">Let's work together /<br>Travaillons ensemble</h2>
-    <p class="reveal">Open to internship opportunities, collaborations, and projects. Don't hesitate to reach out!<br><br>Ouverte aux opportunités de stage, collaborations et projets. N'hésitez pas à me contacter !</p>
-    <a href="mailto:dorisaeaston@gmail.com" class="contact-email reveal">dorisaeaston@gmail.com</a>
+<section class="block" id="competences">
+  <div class="wrap">
+    <h2><span lang="fr">Compétences</span><span lang="en">Skills</span></h2>
+    <p lang="fr" class="intro">Les technologies que j'ai utilisées dans des projets concrets.</p><p lang="en" class="intro">The technologies I've used in real projects.</p>
+    <div class="skills">
+      <div><h3><span lang="fr">Langages</span><span lang="en">Languages</span></h3><ul><li>C#</li><li>Java</li><li>Python</li><li>JavaScript, HTML, CSS</li><li>PHP</li><li>SQL, PL/SQL</li></ul></div>
+      <div><h3><span lang="fr">Données et ML</span><span lang="en">Data and ML</span></h3><ul><li>pandas, NumPy</li><li>scikit-learn</li><li>K-means, <span lang="fr">analyse RFM</span><span lang="en">RFM analysis</span></li><li>Jupyter, Streamlit</li></ul></div>
+      <div><h3><span lang="fr">Bases de données</span><span lang="en">Databases</span></h3><ul><li>SQL Server</li><li>Oracle</li><li>MySQL</li></ul></div>
+      <div><h3><span lang="fr">Outils et méthodes</span><span lang="en">Tools and methods</span></h3><ul><li>.NET, Windows Forms</li><li>Git, GitHub</li><li><span lang="fr">POO, structures de données</span><span lang="en">OOP, data structures</span></li><li>Agile, Scrum, UML</li></ul></div>
+    </div>
   </div>
 </section>
 
+<section class="block" id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p lang="fr" class="intro">Vous cherchez une stagiaire pour l'été 2027 ? Écrivez-moi, je réponds rapidement.</p><p lang="en" class="intro">Looking for an intern for summer 2027? Write to me, I reply quickly.</p>
+    <a class="contact-mail" href="mailto:dorisaeaston@gmail.com">dorisaeaston@gmail.com</a>
+    <div class="contact-links">
+      <a class="btn" href="https://www.linkedin.com/in/isadoraeaston" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/IsadoraEaston" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="cv/CV_IsabelleEaston_FR.pdf" download><span lang="fr">CV en français</span><span lang="en">Resume in French</span></a>
+      <a class="btn" href="cv/Resume_IsabelleEaston_EN.pdf" download><span lang="fr">CV en anglais</span><span lang="en">Resume in English</span></a>
+    </div>
+  </div>
+</section>
+</main>
 <footer>
-  <span>© 2026 Isabelle D. Easton</span>
-  <div style="display: flex; gap: 1.5rem;">
-    <a href="https://github.com/IsadoraEaston" target="_blank">GitHub</a>
-    <a href="mailto:dorisaeaston@gmail.com">Email</a>
-  </div>
+  <div class="wrap">© <span id="year">2026</span> Isabelle D. Easton · <span lang="fr">Montréal, Québec</span><span lang="en">Montréal, Québec</span></div>
 </footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
+<script src="main.js"></script>
 </body>
 </html>

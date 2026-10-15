@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr" data-lang="fr" data-title-fr="Annuaire BST · Isabelle D. Easton" data-title-en="BST Phone Book · Isabelle D. Easton">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Annuaire BST · Isabelle D. Easton</title>
+<meta name="description" content="Un annuaire téléphonique bâti sur un arbre binaire de recherche, comparé à une structure hybride.">
+<meta property="og:title" content="Annuaire BST · Isabelle D. Easton">
+<meta property="og:description" content="Un annuaire téléphonique bâti sur un arbre binaire de recherche, comparé à une structure hybride.">
+<meta name="theme-color" content="#0F1B26">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
+<nav class="site-nav" aria-label="Navigation">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Isabelle D. Easton</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+      <li><a href="../index.html#parcours"><span lang="fr">Parcours</span><span lang="en">Background</span></a></li>
+      <li><a href="../index.html#competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" type="button">EN</button>
+  </div>
+</nav>
+<main id="main">
+
+<header class="case-head">
+  <div class="wrap">
+    <a class="back" href="../index.html#projets"><span lang="fr">Tous les projets</span><span lang="en">All projects</span></a>
+    <h1><span lang="fr">Annuaire BST</span><span lang="en">BST Phone Book</span></h1>
+    <p lang="fr" class="lede">Un annuaire téléphonique bâti sur un arbre binaire de recherche, comparé à une structure hybride.</p><p lang="en" class="lede">A phone book built on a binary search tree, benchmarked against a hybrid structure.</p>
+    <dl class="facts"><div><dt><span lang="fr">Type</span><span lang="en">Type</span></dt><dd><span lang="fr">Projet de cours</span><span lang="en">Course project</span></dd></div><div><dt><span lang="fr">Équipe</span><span lang="en">Team</span></dt><dd><span lang="fr">2 personnes</span><span lang="en">2 people</span></dd></div><div><dt><span lang="fr">Évaluation</span><span lang="en">Grade</span></dt><dd><span lang="fr">99/100</span><span lang="en">99/100</span></dd></div></dl>
+    <ul class="tags"><li>C#</li><li>.NET 8</li><li>Structures de données</li><li>Algorithmes</li></ul>
+    <div class="actions"><a class="btn" href="https://github.com/IsadoraEaston/annuaire-bst" target="_blank" rel="noopener"><span lang="fr">Voir le code sur GitHub</span><span lang="en">View the code on GitHub</span></a></div>
+    <figure class="case-shot">
+      <div class="shot dark"><img src="../img/bst.jpg" alt="Affichage graphique de l'arbre, sans chevauchement des nœuds (algorithme de Reingold-Tilford)."></div>
+      <figcaption><span lang="fr">Affichage graphique de l'arbre, sans chevauchement des nœuds (algorithme de Reingold-Tilford).</span><span lang="en">Graphical tree display with no overlapping nodes (Reingold-Tilford algorithm).</span></figcaption>
+    </figure>
+  </div>
+</header>
+<div class="case-body"><div class="wrap"><section><h2><span lang="fr">Le problème</span><span lang="en">The problem</span></h2><div class="content"><div lang="fr"><p>Un annuaire doit permettre d'ajouter, de chercher et de supprimer des contacts rapidement, et de les garder triés. Quelle structure de données le fait le mieux, selon le type de recherche ?</p></div><div lang="en"><p>A phone book has to add, find and delete contacts quickly, and keep them sorted. Which data structure does this best, depending on the kind of search?</p></div></div></section><section><h2><span lang="fr">Choix techniques</span><span lang="en">Technical choices</span></h2><div class="content"><div lang="fr"><ul><li><strong>Version 1</strong> : un arbre binaire de recherche trié par nom, avec 4 parcours (infixe, préfixe, postfixe, en largeur) et la recherche par nom, ville et téléphone.</li><li><strong>Version 2</strong> : trois structures hybrides pour comparer les compromis : trois BST indexés, BST + table de hachage pour une recherche par téléphone en O(1), et BST + liste pour les noms en double.</li><li><strong>Mesure des temps d'exécution</strong> pour comparer les versions, et import/export CSV.</li></ul></div><div lang="en"><ul><li><strong>Version 1</strong>: a binary search tree sorted by name, with 4 traversals (in-order, pre-order, post-order, breadth-first) and search by name, city and phone.</li><li><strong>Version 2</strong>: three hybrid structures to compare trade-offs: three indexed BSTs, BST + hash table for O(1) phone lookups, and BST + list for duplicate names.</li><li><strong>Execution-time benchmarking</strong> to compare the versions, plus CSV import/export.</li></ul></div></div></section><section><h2><span lang="fr">Défis et solutions</span><span lang="en">Challenges and solutions</span></h2><div class="content"><div lang="fr"><ul><li><strong>Synchroniser 5 structures</strong> : chaque ajout et chaque suppression met à jour toutes les structures de façon cohérente.</li><li><strong>Des homonymes</strong> : des critères de départage dans les comparateurs évitent les faux doublons.</li><li><strong>Garder la forme de l'arbre</strong> : l'export CSV en ordre préfixe reconstruit exactement le même arbre au rechargement.</li></ul></div><div lang="en"><ul><li><strong>Keeping 5 structures in sync</strong>: every insertion and deletion updates all structures consistently.</li><li><strong>Same names</strong>: tie-breakers in the comparators prevent false duplicates.</li><li><strong>Preserving the tree's shape</strong>: exporting to CSV in pre-order rebuilds exactly the same tree on reload.</li></ul></div></div></section><section><h2><span lang="fr">Résultats</span><span lang="en">Results</span></h2><div class="content"><div lang="fr"><p>Évalué <strong>99/100</strong>. Notre enseignant a souligné que nous avions livré le projet et une extension au-delà des exigences, en poussant plus loin les limites des arbres.</p></div><div lang="en"><p>Graded <strong>99/100</strong>. Our instructor noted that we delivered the project plus an extension beyond the requirements, pushing the limits of trees further.</p></div></div></section><section><h2><span lang="fr">Ce que j'ai appris</span><span lang="en">What I learned</span></h2><div class="content"><div lang="fr"><p>Il n'y a pas de structure parfaite, seulement des compromis selon l'usage, et il faut les mesurer plutôt que les supposer. Ce projet m'a aussi préparée aux arbres de décision en apprentissage automatique, qui reposent sur la même logique récursive de branches.</p></div><div lang="en"><p>There's no perfect structure, only trade-offs that depend on use, and they need to be measured rather than assumed. This project also prepared me for decision trees in machine learning, which rely on the same recursive branching logic.</p></div></div></section></div></div>
+<div class="wrap">
+  <nav class="next" aria-label="Projets / Projects">
+    <a href="../index.html#projets"><small><span lang="fr">Retour</span><span lang="en">Back</span></small><span><span lang="fr">Tous les projets</span><span lang="en">All projects</span></span></a>
+    <a href="bank.html" style="text-align:right"><small><span lang="fr">Projet suivant</span><span lang="en">Next project</span></small><span><span lang="fr">Système bancaire</span><span lang="en">Bank System</span></span></a>
+  </nav>
+</div>
+</main>
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Isabelle D. Easton · <span lang="fr">Montréal, Québec</span><span lang="en">Montréal, Québec</span></div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>

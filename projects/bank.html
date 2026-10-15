@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr" data-lang="fr" data-title-fr="Système bancaire · Isabelle D. Easton" data-title-en="Bank System · Isabelle D. Easton">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Système bancaire · Isabelle D. Easton</title>
+<meta name="description" content="Un système bancaire complet, construit deux fois : avec des fichiers, puis avec une base Oracle.">
+<meta property="og:title" content="Système bancaire · Isabelle D. Easton">
+<meta property="og:description" content="Un système bancaire complet, construit deux fois : avec des fichiers, puis avec une base Oracle.">
+<meta name="theme-color" content="#0F1B26">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
+<nav class="site-nav" aria-label="Navigation">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Isabelle D. Easton</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+      <li><a href="../index.html#parcours"><span lang="fr">Parcours</span><span lang="en">Background</span></a></li>
+      <li><a href="../index.html#competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" type="button">EN</button>
+  </div>
+</nav>
+<main id="main">
+
+<header class="case-head">
+  <div class="wrap">
+    <a class="back" href="../index.html#projets"><span lang="fr">Tous les projets</span><span lang="en">All projects</span></a>
+    <h1><span lang="fr">Système bancaire</span><span lang="en">Bank System</span></h1>
+    <p lang="fr" class="lede">Un système bancaire complet, construit deux fois : avec des fichiers, puis avec une base Oracle.</p><p lang="en" class="lede">A complete banking system, built twice: with files, then with an Oracle database.</p>
+    <dl class="facts"><div><dt><span lang="fr">Type</span><span lang="en">Type</span></dt><dd><span lang="fr">Projet de cours</span><span lang="en">Course project</span></dd></div><div><dt><span lang="fr">Équipe</span><span lang="en">Team</span></dt><dd><span lang="fr">3 personnes</span><span lang="en">3 people</span></dd></div><div><dt><span lang="fr">Session</span><span lang="en">Term</span></dt><dd><span lang="fr">Hiver 2026</span><span lang="en">Winter 2026</span></dd></div></dl>
+    <ul class="tags"><li>Java 17</li><li>Swing</li><li>Oracle</li><li>JDBC</li><li>UML</li></ul>
+    <div class="actions"><span class="also" style="margin:0"><span lang="fr">Code disponible sur demande.</span><span lang="en">Code available on request.</span></span></div>
+    <figure class="case-shot">
+      <div class="shot"><img src="../img/bank.jpg" alt="L'interface gestionnaire : fiche client, ouverture de comptes et rapports."></div>
+      <figcaption><span lang="fr">L'interface gestionnaire : fiche client, ouverture de comptes et rapports.</span><span lang="en">The manager interface: client record, account opening and reports.</span></figcaption>
+    </figure>
+  </div>
+</header>
+<div class="case-body"><div class="wrap"><section><h2><span lang="fr">Le problème</span><span lang="en">The problem</span></h2><div class="content"><div lang="fr"><p>Une banque fictive veut moderniser la gestion de ses comptes : intégrer les clients, gérer plusieurs comptes par client et traiter les opérations, avec des écrans adaptés au client et au gestionnaire.</p></div><div lang="en"><p>A fictional bank wants to modernize account management: onboarding clients, handling several accounts per client and processing transactions, with screens tailored to clients and managers.</p></div></div></section><section><h2><span lang="fr">Choix techniques</span><span lang="en">Technical choices</span></h2><div class="content"><div lang="fr"><ul><li><strong>Deux versions</strong> avec les mêmes règles métier : persistance par sérialisation de fichiers, puis base Oracle via JDBC.</li><li><strong>Architecture DTO / DAO / Service</strong> pour la version Oracle : aucune logique métier dans l'interface.</li><li><strong>Cinq types de comptes</strong> : chèque, épargne, crédit, ligne de crédit et devise, avec frais, intérêts, limites de crédit et quotas de transactions gratuites.</li><li><strong>Interfaces console et Swing</strong>, et modélisation UML (classes, cas d'utilisation, activité, séquence).</li></ul></div><div lang="en"><ul><li><strong>Two versions</strong> sharing the same business rules: file serialization, then an Oracle database through JDBC.</li><li><strong>DTO / DAO / Service architecture</strong> for the Oracle version: no business logic in the interface.</li><li><strong>Five account types</strong>: checking, savings, credit, line of credit and currency, with fees, interest, credit limits and free-transaction quotas.</li><li><strong>Console and Swing interfaces</strong>, and UML modeling (class, use case, activity, sequence).</li></ul></div></div></section><section><h2><span lang="fr">Défis et solutions</span><span lang="en">Challenges and solutions</span></h2><div class="content"><div lang="fr"><p><strong>Garder la mémoire et la base cohérentes.</strong> Après un virement ou un dépôt, l'écran pouvait afficher un solde périmé. Chaque opération suit donc le même cycle : charger depuis la base, modifier, enregistrer immédiatement, puis rafraîchir l'affichage.</p></div><div lang="en"><p><strong>Keeping memory and the database consistent.</strong> After a transfer or a deposit, the screen could show an outdated balance. Every operation therefore follows the same cycle: load from the database, modify, save immediately, then refresh the display.</p></div><figure class="figure-inline"><div class="shot"><img src="../img/bank-sequence.jpg" alt="Diagramme de séquence d'une opération." loading="lazy"></div><figcaption><span lang="fr">Diagramme de séquence d'une opération.</span><span lang="en">Sequence diagram of an operation.</span></figcaption></figure></div></section><section><h2><span lang="fr">Résultats</span><span lang="en">Results</span></h2><div class="content"><div lang="fr"><p>Dépôts, retraits, virements, ouverture de tous les types de comptes, calcul des intérêts, frais et rapports de transactions, avec validation et unicité des courriels, téléphones et identifiants.</p></div><div lang="en"><p>Deposits, withdrawals, transfers, opening every account type, interest calculation, fees and transaction reports, with validation and uniqueness of emails, phone numbers and IDs.</p></div></div></section><section><h2><span lang="fr">Ce que j'ai appris</span><span lang="en">What I learned</span></h2><div class="content"><div lang="fr"><p>Construire le même système deux fois m'a montré que l'architecture ne dépend pas du support de stockage, et m'a fait comparer un modèle riche (la logique dans les objets) à des DTO purs (la logique dans les services). Prochaines étapes : tests JUnit et gestion de la concurrence.</p></div><div lang="en"><p>Building the same system twice showed me that the architecture doesn't depend on the storage, and made me compare a rich model (logic in the objects) with pure DTOs (logic in services). Next steps: JUnit tests and concurrency handling.</p></div></div></section></div></div>
+<div class="wrap">
+  <nav class="next" aria-label="Projets / Projects">
+    <a href="../index.html#projets"><small><span lang="fr">Retour</span><span lang="en">Back</span></small><span><span lang="fr">Tous les projets</span><span lang="en">All projects</span></span></a>
+    <a href="converter.html" style="text-align:right"><small><span lang="fr">Projet suivant</span><span lang="en">Next project</span></small><span><span lang="fr">Convertisseur de devises</span><span lang="en">Currency Converter</span></span></a>
+  </nav>
+</div>
+</main>
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Isabelle D. Easton · <span lang="fr">Montréal, Québec</span><span lang="en">Montréal, Québec</span></div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>

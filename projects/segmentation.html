@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr" data-lang="fr" data-title-fr="Segmentation de clientèle · Isabelle D. Easton" data-title-en="Customer Segmentation · Isabelle D. Easton">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segmentation de clientèle · Isabelle D. Easton</title>
+<meta name="description" content="Qui sont les meilleurs clients d'un détaillant, et lesquels est-il sur le point de perdre ?">
+<meta property="og:title" content="Segmentation de clientèle · Isabelle D. Easton">
+<meta property="og:description" content="Qui sont les meilleurs clients d'un détaillant, et lesquels est-il sur le point de perdre ?">
+<meta name="theme-color" content="#0F1B26">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
+<nav class="site-nav" aria-label="Navigation">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Isabelle D. Easton</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projets"><span lang="fr">Projets</span><span lang="en">Projects</span></a></li>
+      <li><a href="../index.html#parcours"><span lang="fr">Parcours</span><span lang="en">Background</span></a></li>
+      <li><a href="../index.html#competences"><span lang="fr">Compétences</span><span lang="en">Skills</span></a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" type="button">EN</button>
+  </div>
+</nav>
+<main id="main">
+
+<header class="case-head">
+  <div class="wrap">
+    <a class="back" href="../index.html#projets"><span lang="fr">Tous les projets</span><span lang="en">All projects</span></a>
+    <h1><span lang="fr">Segmentation de clientèle</span><span lang="en">Customer Segmentation</span></h1>
+    <p lang="fr" class="lede">Qui sont les meilleurs clients d'un détaillant, et lesquels est-il sur le point de perdre ?</p><p lang="en" class="lede">Who are a retailer's best customers, and who is it about to lose?</p>
+    <dl class="facts"><div><dt><span lang="fr">Type</span><span lang="en">Type</span></dt><dd><span lang="fr">Projet personnel</span><span lang="en">Personal project</span></dd></div><div><dt><span lang="fr">Année</span><span lang="en">Year</span></dt><dd><span lang="fr">2026</span><span lang="en">2026</span></dd></div><div><dt><span lang="fr">Données</span><span lang="en">Data</span></dt><dd><span lang="fr">1 067 371 transactions</span><span lang="en">1,067,371 transactions</span></dd></div></dl>
+    <ul class="tags"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>K-means</li><li>Streamlit</li></ul>
+    <div class="actions"><a class="btn btn-primary" href="https://isadora-customer-segmentation.streamlit.app" target="_blank" rel="noopener"><span lang="fr">Voir la démo</span><span lang="en">Open the demo</span></a><a class="btn" href="https://github.com/IsadoraEaston/customer-segmentation" target="_blank" rel="noopener"><span lang="fr">Voir le code sur GitHub</span><span lang="en">View the code on GitHub</span></a></div>
+    <figure class="case-shot">
+      <div class="shot"><img src="../img/segmentation.jpg" alt="La démo en ligne : les quatre segments, leur poids et l'action recommandée pour chacun."></div>
+      <figcaption><span lang="fr">La démo en ligne : les quatre segments, leur poids et l'action recommandée pour chacun.</span><span lang="en">The live demo: the four segments, their weight and the recommended action for each.</span></figcaption>
+    </figure>
+  </div>
+</header>
+<div class="case-body"><div class="wrap"><section><h2><span lang="fr">Le problème</span><span lang="en">The problem</span></h2><div class="content"><div lang="fr"><p>Avant l'informatique, j'ai géré un commerce de mode. Savoir quels clients récompenser, lesquels reconquérir et lesquels laisser partir était une question quotidienne, à laquelle je répondais à l'intuition.</p><p>Ce projet y répond avec des données réelles : les ventes d'un détaillant en ligne britannique de 2009 à 2011 (Online Retail II, UCI).</p></div><div lang="en"><p>Before IT, I managed a fashion retail business. Knowing which customers to reward, which to win back and which to let go was a daily question, answered by intuition.</p><p>This project answers it with real data: two years of sales from a UK online retailer (Online Retail II, UCI).</p></div></div></section><section><h2><span lang="fr">Choix techniques</span><span lang="en">Technical choices</span></h2><div class="content"><div lang="fr"><ul><li><strong>Analyse RFM</strong> (récence, fréquence, montant) pour décrire chaque client en trois mesures.</li><li><strong>Transformation logarithmique puis standardisation</strong> : le 1 % des plus gros clients pèse 31 % des revenus et aurait dominé les distances de K-means.</li><li><strong>K-means avec k = 4</strong>, choisi grâce à un pic local du score de silhouette (0,367) et à la courbe du coude, et parce que quatre segments sont actionnables.</li><li><strong>Streamlit</strong> pour une démo en ligne où l'on peut explorer les segments et classer un client.</li></ul></div><div lang="en"><ul><li><strong>RFM analysis</strong> (recency, frequency, monetary) to describe each customer with three measures.</li><li><strong>Log transformation, then standardization</strong>: the top 1% of customers account for 31% of revenue and would have dominated K-means distances.</li><li><strong>K-means with k = 4</strong>, chosen from a local peak in the silhouette score (0.367) and the elbow curve, and because four segments are actionable.</li><li><strong>Streamlit</strong> for a live demo where you can explore the segments and classify a customer.</li></ul></div></div></section><section><h2><span lang="fr">Résultats</span><span lang="en">Results</span></h2><div class="content"><div lang="fr"><p>Quatre segments parmi <strong>5 839 clients</strong>. Les <em>Champions</em>, 20 % des clients, génèrent <strong>74 % des revenus</strong>.</p><table class='seg-table'><thead><tr><th>Segment</th><th>Clients</th><th>Revenus</th><th>Action</th></tr></thead><tbody><tr><td>Champions</td><td class='num'>20 %</td><td class='num hi'>74 %</td><td>Les protéger</td></tr><tr><td>À risque</td><td class='num'>25 %</td><td class='num'>16 %</td><td>Les reconquérir</td></tr><tr><td>Prometteurs</td><td class='num'>22 %</td><td class='num'>6 %</td><td>Créer l'habitude</td></tr><tr><td>Perdus</td><td class='num'>34 %</td><td class='num'>4 %</td><td>Relance à faible coût</td></tr></tbody></table><p>Le segment <em>À risque</em> est la cible la plus rentable : de bons clients, absents depuis six mois, encore récupérables.</p></div><div lang="en"><p>Four segments among <strong>5,839 customers</strong>. <em>Champions</em>, 20% of customers, generate <strong>74% of revenue</strong>.</p><table class='seg-table'><thead><tr><th>Segment</th><th>Customers</th><th>Revenue</th><th>Action</th></tr></thead><tbody><tr><td>Champions</td><td class='num'>20%</td><td class='num hi'>74%</td><td>Protect them</td></tr><tr><td>At risk</td><td class='num'>25%</td><td class='num'>16%</td><td>Win them back</td></tr><tr><td>Promising</td><td class='num'>22%</td><td class='num'>6%</td><td>Build the habit</td></tr><tr><td>Lost</td><td class='num'>34%</td><td class='num'>4%</td><td>Low-cost reactivation</td></tr></tbody></table><p>The <em>At risk</em> segment is the highest-return target: good customers, gone for six months, still recoverable.</p></div></div></section><section><h2><span lang="fr">Défis et solutions</span><span lang="en">Challenges and solutions</span></h2><div class="content"><div lang="fr"><ul><li><strong>Des annulations cachées.</strong> Un client figurait parmi les dix plus gros acheteurs avec seulement 2 commandes. En enquêtant, j'ai trouvé une commande de 80 995 unités annulée le jour même. Supprimer les lignes d'annulation ne suffisait pas : j'ai associé chaque annulation à sa commande d'origine, ce qui a retiré 6 332 commandes et 673 413 £ de revenus fantômes.</li><li><strong>Des achats sans client.</strong> 22 % des transactions n'avaient pas d'identifiant client. Je les ai retirées et documentées comme limite.</li><li><strong>Vérifier une hypothèse.</strong> Un pic de clients inactifs depuis environ 400 jours correspondait à des détaillants qui s'approvisionnent avant Noël et n'ont pas recommandé l'année suivante.</li></ul></div><div lang="en"><ul><li><strong>Hidden cancellations.</strong> One customer ranked among the ten biggest buyers with only 2 orders. Investigating, I found an order of 80,995 units cancelled the same day. Removing cancellation rows wasn't enough: I matched each cancellation to its original order, removing 6,332 orders and £673,413 of phantom revenue.</li><li><strong>Purchases without a customer.</strong> 22% of transactions had no customer ID. I removed them and documented it as a limitation.</li><li><strong>Checking a hypothesis.</strong> A spike of customers inactive for about 400 days turned out to be retailers stocking up before Christmas who didn't reorder the following year.</li></ul></div></div></section><section><h2><span lang="fr">Ce que j'ai appris</span><span lang="en">What I learned</span></h2><div class="content"><div lang="fr"><p>Le nettoyage des données a demandé plus de réflexion que l'algorithme lui-même, et c'est lui qui rend les résultats crédibles. J'ai aussi appris à choisir un nombre de segments à la fois justifié par les données et utile pour une entreprise, et à relier un résultat technique à une décision concrète.</p></div><div lang="en"><p>Cleaning the data took more thought than the algorithm itself, and it's what makes the results credible. I also learned to choose a number of segments that is both supported by the data and useful to a business, and to connect a technical result to a concrete decision.</p></div></div></section></div></div>
+<div class="wrap">
+  <nav class="next" aria-label="Projets / Projects">
+    <a href="../index.html#projets"><small><span lang="fr">Retour</span><span lang="en">Back</span></small><span><span lang="fr">Tous les projets</span><span lang="en">All projects</span></span></a>
+    <a href="remax.html" style="text-align:right"><small><span lang="fr">Projet suivant</span><span lang="en">Next project</span></small><span><span lang="fr">RemaxImmo</span><span lang="en">RemaxImmo</span></span></a>
+  </nav>
+</div>
+</main>
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Isabelle D. Easton · <span lang="fr">Montréal, Québec</span><span lang="en">Montréal, Québec</span></div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>
