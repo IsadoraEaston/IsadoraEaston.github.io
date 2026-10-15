@@ -136,3 +136,53 @@
     resizeTimer = setTimeout(function () { setup(); if (reduce) requestAnimationFrame(draw); }, 150);
   });
 })();
+
+/* Page background: slow-drifting glows and faint cluster points behind the glass */
+(function () {
+  var c = document.getElementById('bg');
+  if (!c || !c.getContext) return;
+  var ctx = c.getContext('2d');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W, H, dpr, glows, dots;
+  var palette = [[46,196,182],[255,127,110],[159,231,223],[91,122,142]];
+  function setup() {
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    W = window.innerWidth; H = window.innerHeight;
+    c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var R = Math.max(W, H);
+    glows = [
+      { x: .15, y: .25, r: R * .38, c: 0, sx: .00007, sy: .00005 },
+      { x: .85, y: .35, r: R * .32, c: 1, sx: -.00006, sy: .00008 },
+      { x: .55, y: .85, r: R * .36, c: 0, sx: .00005, sy: -.00006 },
+      { x: .3,  y: .7,  r: R * .22, c: 1, sx: -.00008, sy: -.00004 }
+    ];
+    dots = [];
+    var n = W < 641 ? 40 : 90;
+    for (var i = 0; i < n; i++) {
+      var k = i % 4, cx = [.18, .82, .7, .3][k] * W, cy = [.22, .3, .78, .72][k] * H;
+      var a = Math.random() * Math.PI * 2, r = Math.random() * Math.min(W, H) * .12;
+      dots.push({ x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r, k: k, s: 1 + Math.random() * 2, p: Math.random() * 6.28 });
+    }
+  }
+  function frame(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < glows.length; i++) {
+      var g = glows[i];
+      var x = (g.x + Math.sin(t * g.sx + i) * .08) * W, y = (g.y + Math.cos(t * g.sy + i) * .08) * H;
+      var col = palette[g.c];
+      var grad = ctx.createRadialGradient(x, y, 0, x, y, g.r);
+      grad.addColorStop(0, 'rgba(' + col + ',0.22)');
+      grad.addColorStop(1, 'rgba(' + col + ',0)');
+      ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+    }
+    for (var j = 0; j < dots.length; j++) {
+      var d = dots[j], col2 = palette[d.k];
+      ctx.beginPath();
+      ctx.arc(d.x + Math.sin(t * .0004 + d.p) * 6, d.y + Math.cos(t * .0003 + d.p) * 6, d.s, 0, 6.283);
+      ctx.fillStyle = 'rgba(' + col2 + ',0.45)'; ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  setup(); requestAnimationFrame(frame);
+  window.addEventListener('resize', function () { setup(); if (reduce) requestAnimationFrame(frame); });
+})();

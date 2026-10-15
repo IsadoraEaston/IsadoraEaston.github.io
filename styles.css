@@ -250,3 +250,34 @@ footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .project-row a, .project-row .thumb img, .featured .shot, .btn { transition: none; }
 }
+
+/* ---------- glass layer over a living background ---------- */
+#bg { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+body { background: var(--ink); }
+.hero { background: transparent; }
+.glass, .featured, .project-row a, .skills > div, .timeline, .case-body section, .facts {
+  background: rgba(21, 38, 52, .52);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(238, 243, 245, .09);
+  border-radius: 18px;
+}
+.featured { padding: 1.75rem; }
+.project-list { display: grid; gap: 1rem; }
+.project-row, .project-row:last-child { border: 0; }
+.project-row a { padding: 1.25rem; }
+.project-row a:hover { padding-left: 1.5rem; padding-right: 1.25rem; background: rgba(29, 51, 68, .62); border-color: rgba(46, 196, 182, .35); }
+.skills > div { padding: 1.25rem 1.4rem; }
+.timeline { padding: 1.75rem 1.75rem 1.75rem 2.25rem; }
+.case-body section { padding: 1.75rem; margin-bottom: 1rem; }
+.case-body section:first-child { padding-top: 1.75rem; border-top: 1px solid rgba(238, 243, 245, .09); }
+.facts { padding: 1rem 1.25rem; display: inline-flex; }
+section.block { border-bottom: 0; }
+.site-nav { background: rgba(15, 27, 38, .6); }
+@media (max-width: 640px) {
+  .featured, .timeline, .case-body section { padding: 1.25rem; }
+  .facts { display: flex; gap: 1.25rem; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .featured, .project-row a, .skills > div, .timeline, .case-body section, .facts { background: rgba(21, 38, 52, .92); }
+}
