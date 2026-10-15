@@ -341,6 +341,31 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .project-preview.shot {
+    background: #f4f6f6;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .project-preview.shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .project-preview.shot.dark { background: #0d0d10; }
+  .project-preview.shot.dark img { object-fit: contain; }
+
+  .project-card.featured { grid-column: 1 / -1; }
+  .project-card.featured .project-preview { height: 300px; }
+  .project-card.featured .project-preview img { object-fit: contain; background: #fff; }
+
+  .kpi-row { display: flex; gap: 2rem; flex-wrap: wrap; margin: 0 0 1.25rem; }
+  .kpi-row b { display: block; font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--accent); line-height: 1.1; }
+  .kpi-row span { font-size: 0.8rem; color: var(--text-muted); }
+
   .project-body {
     padding: 1.5rem;
   }
@@ -485,9 +510,9 @@
     <span class="hero-tag">Available for opportunities · Disponible</span>
     <h1>Isabelle<br><em>D. Easton</em></h1>
     <p class="hero-desc">
-      Web developer in training, based in Montréal. Passionate about building clean, functional experiences for the web.
+      Software developer in training (Collège LaSalle, Montréal), with a background in retail management. Seeking a <strong>summer 2027 internship</strong> (May–August) in software development or data / machine learning.
       <br><br>
-      Développeuse web en formation, basée à Montréal. Passionnée par la création d'expériences web propres et fonctionnelles.
+      Développeuse logiciel en formation (Collège LaSalle, Montréal), issue de la gestion en commerce de détail. Je cherche un <strong>stage à l'été 2027</strong> (mai à août) en développement logiciel ou en données / apprentissage automatique.
     </p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View my work →</a>
@@ -551,26 +576,33 @@
   <div class="section-label reveal">Work / Projets</div>
   <h2 class="section-title reveal">Featured Projects</h2>
   <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-preview">🥁</div>
+
+    <div class="project-card featured reveal">
+      <div class="project-preview shot"><img src="img/segmentation.jpg" alt="Customer Segmentation Streamlit app showing four customer segments"></div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">jQuery</span>
+          <span class="tag">Python</span>
+          <span class="tag">pandas</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">K-means</span>
+          <span class="tag">Streamlit</span>
         </div>
-        <h3 class="project-title">Musical Drums</h3>
-        <p class="project-desc">A Simon-style memory game where players repeat growing sequences of colored buttons and sounds. Built with vanilla JS and jQuery.</p>
+        <h3 class="project-title">Customer Segmentation · Segmentation de clientèle</h3>
+        <p class="project-desc">Who are a retailer's best customers, and who is it about to lose? RFM analysis and K-means clustering on real data from a UK online retailer, including a data quality fix (cancellations matched to their original orders). The four segments are interpreted through my retail management experience, and the app is deployed online.</p>
+        <div class="kpi-row">
+          <div><b>5,839</b><span>customers segmented</span></div>
+          <div><b>4</b><span>segments interpreted</span></div>
+          <div><b>20% → 74%</b><span>Champions: 20% of customers, 74% of revenue</span></div>
+        </div>
         <div class="project-links">
-          <a href="https://github.com/IsadoraEaston/Musical-Drums" class="project-link" target="_blank">
-            ↗ GitHub
-          </a>
+          <a href="https://isadora-customer-segmentation.streamlit.app" class="project-link" target="_blank">🌐 Live Demo</a>
+          <a href="https://github.com/IsadoraEaston/customer-segmentation" class="project-link" target="_blank">↗ GitHub</a>
         </div>
       </div>
     </div>
+
     <div class="project-card reveal">
-      <div class="project-preview">🏠</div>
+      <div class="project-preview shot"><img src="img/remax.jpg" alt="RemaxImmo employee and house management windows"></div>
       <div class="project-body">
         <div class="project-tags">
           <span class="tag">C#</span>
@@ -578,17 +610,16 @@
           <span class="tag">SQL Server</span>
           <span class="tag">ADO.NET</span>
         </div>
-        <h3 class="project-title">Remax Immobilier</h3>
-        <p class="project-desc">A multi-tier desktop application for real estate management with role-based access (Admin, Agent, User), property search, and client management. Grade: 90/100.</p>
+        <h3 class="project-title">RemaxImmo</h3>
+        <p class="project-desc">A multi-tier desktop application for real estate management with role-based access control: each agent can only see their own clients and their houses, while the admin manages everything.</p>
         <div class="project-links">
-          <a href="https://github.com/IsadoraEaston/remax-winforms-app" class="project-link" target="_blank">
-            ↗ GitHub
-          </a>
+          <a href="https://github.com/IsadoraEaston/remax-winforms-app" class="project-link" target="_blank">↗ GitHub</a>
         </div>
       </div>
     </div>
+
     <div class="project-card reveal">
-      <div class="project-preview">🌳</div>
+      <div class="project-preview shot dark"><img src="img/bst.jpg" alt="Graphical display of the binary search tree"></div>
       <div class="project-body">
         <div class="project-tags">
           <span class="tag">C#</span>
@@ -596,17 +627,30 @@
           <span class="tag">Algorithms</span>
           <span class="tag">Data Structures</span>
         </div>
-        <h3 class="project-title">Annuaire BST</h3>
-        <p class="project-desc">A phone book console app using Binary Search Tree with 4 traversals, graphical tree display (Reingold-Tilford), benchmarking, and a hybrid V2 with BST + Hash Table + List structures.</p>
+        <h3 class="project-title">Annuaire BST · 99/100</h3>
+        <p class="project-desc">A phone book app using a Binary Search Tree, benchmarked against a hybrid V2 (BST + Hash Table + List), with 4 traversals and a graphical tree display (Reingold-Tilford). Delivered with an extension beyond the requirements.</p>
         <div class="project-links">
-          <a href="https://github.com/IsadoraEaston/annuaire-bst" class="project-link" target="_blank">
-            ↗ GitHub
-          </a>
+          <a href="https://github.com/IsadoraEaston/annuaire-bst" class="project-link" target="_blank">↗ GitHub</a>
         </div>
       </div>
     </div>
+
     <div class="project-card reveal">
-      <div class="project-preview">💱</div>
+      <div class="project-preview shot"><img src="img/bank.jpg" alt="Bank Manager screen of the Bank System application"></div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">Swing</span>
+          <span class="tag">Oracle</span>
+          <span class="tag">PL/SQL</span>
+        </div>
+        <h3 class="project-title">Bank System</h3>
+        <p class="project-desc">Client and account management (checking, savings, credit, currency accounts) with transaction reports and a normalized Oracle database using type-specific account sub-tables.</p>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-preview shot dark"><img src="img/converter.jpg" alt="Currency converter converting CAD to MUR"></div>
       <div class="project-body">
         <div class="project-tags">
           <span class="tag">HTML</span>
@@ -615,13 +659,14 @@
           <span class="tag">REST API</span>
         </div>
         <h3 class="project-title">Currency Converter</h3>
-        <p class="project-desc">Real-time currency converter with 40+ currencies using live exchange rates. Built with vanilla JS, no frameworks.</p>
+        <p class="project-desc">Real-time currency converter with 40+ currencies (including the Mauritian rupee) using live exchange rates. Built with vanilla JS, no frameworks.</p>
         <div class="project-links">
           <a href="https://currency-converter-three-sigma-84.vercel.app" class="project-link" target="_blank">🌐 Live Demo</a>
           <a href="https://github.com/IsadoraEaston/currency-converter" class="project-link" target="_blank">↗ GitHub</a>
         </div>
       </div>
     </div>
+
     <div class="project-card reveal">
       <div class="project-preview">🤖</div>
       <div class="project-body">
@@ -636,14 +681,28 @@
         <p class="project-desc">Completed all 3 courses of the Machine Learning Specialization by Andrew Ng (DeepLearning.AI / Stanford). Implemented linear/logistic regression, neural networks, decision trees, recommender systems, and deep Q-learning from scratch using NumPy and TensorFlow.</p>
         <div class="project-links">
           <a href="https://github.com/IsadoraEaston/Machine_Learning_Specialization" class="project-link" target="_blank">↗ GitHub</a>
-          <a href="https://www.coursera.org/account/accomplishments/verify/5D842IQOXTAW" class="project-link" target="_blank">🎓 Certificate 1</a>
-          <a href="https://www.coursera.org/account/accomplishments/verify/8P5W0B49ZJZB" class="project-link" target="_blank">🎓 Certificate 2</a>
-          <a href="https://coursera.org/verify/H05W3D1LVH3K" class="project-link" target="_blank">🎓 Certificate 3</a>
+          <a href="https://coursera.org/verify/specialization/VX1HIUTYGSIW" class="project-link" target="_blank">🏆 Specialization Certificate</a>
         </div>
-        <div class="project-links" style="margin-top: 0.5rem;">
-         <a href="https://coursera.org/verify/specialization/VX1HIUTYGSIW" class="project-link" target="_blank">🏆 Full Specialization Certificate</a>
       </div>
     </div>
+
+    <div class="project-card reveal">
+      <div class="project-preview">🥁</div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">jQuery</span>
+        </div>
+        <h3 class="project-title">Musical Drums</h3>
+        <p class="project-desc">A Simon-style memory game where players repeat growing sequences of colored buttons and sounds. Built with vanilla JS and jQuery.</p>
+        <div class="project-links">
+          <a href="https://github.com/IsadoraEaston/Musical-Drums" class="project-link" target="_blank">↗ GitHub</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
